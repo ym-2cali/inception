@@ -8,20 +8,13 @@ RUN apk add nginx
 
 RUN echo "installing nginx\n"
 
-COPY inception.conf /etc/nginx/nginx.conf
+COPY nginx.conf /etc/nginx/nginx.conf
 
 RUN echo "copyin nginx config\n"
 
-RUN mkdir -p /etc/nginx/ssl
+RUN apk add openssl
 
-RUN echo "ssl directory created\n"
+RUN openssl req -x509 -new -newkey rsa:2048 -keyout /etc/cert.key -noenc -days 365  -out /etc/cert.crt  -subj "/C=MA/CN=1337.ma"
 
-COPY ssl/inception.crt /etc/nginx/ssl
-
-RUN echo "copying .crt\n"
-
-COPY ssl/inception.key /etc/nginx/ssl
-
-RUN echo "nginx is running\n"
 
 CMD ["nginx", "-g",  "daemon off;"]

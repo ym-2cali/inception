@@ -6,6 +6,6 @@ until mariadb-admin ping --silent; do sleep 1; done
 
 mariadb -u root < /etc/cr_us.sql
 
-mariadb-admin -u root shutdown
+mariadb-admin -u root -p shutdown
 
 exec mariadbd --user=mysql

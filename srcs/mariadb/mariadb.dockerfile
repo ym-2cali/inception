@@ -12,9 +12,9 @@ COPY my.cnf /etc/my.cnf
 
 COPY my.cnf.d   etc/my.cnf.d
 
-COPY cr_us.sql /etc
+COPY cr_us.sql /etc/
 
-COPY run_db.sh /etc 
+COPY run_db.sh /etc/ 
 
 RUN chmod +x /etc/run_db.sh
 
